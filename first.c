@@ -1,7 +1,7 @@
 #include <stdio.h>
 int main(void) {
-int a[3][3],b[3][3],sum[3][3],A1,A2,A3,A4,A5,A6,A7,A8,A9;
-
+int a[3][3],b[3][3],c[3][3],sum[3][3],i,j,k;
+float I[3][3];
 printf("\nEnter elements of 1st matrix:\n");
   for (int i = 0; i < 3; ++i)
     {
@@ -47,21 +47,57 @@ for (int i=0;i<3;i++)
 }
 
 printf("\nSum of two matrices: \n");
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < 3; i++){
     for (int j = 0; j < 3; j++) {
       printf("%d   ", sum[i][j]);
       }
-      printf("\n");
-    //adjoint of first matrix
-    A1=(a[2][2]*a[3][3]-a[3][2]*a[2][3]);
-    A2=(a[2][3]*a[3][1]-a[2][1]*a[3][3]);
-    A3=(a[2][1]*a[3][2]-a[3][1]*a[2][2]);
-    A4=(a[1][3]*a[3][2]-a[1][2]*a[3][3]);
-    A5=(a[1][1]*a[3][3]-a[1][3]*a[3][1]);
-    A6=(a[1][2]*a[3][1]-a[1][1]*a[3][2]);
-    A7=(a[1][2]*a[2][3]-a[1][3]*a[2][2]);
-    A8=(a[1][3]*a[2][1]-a[1][1]*a[2][3]);
-    A9=(a[1][1]*a[2][2]-a[1][2]*a[2][1]);
-    printf("\nAdjoint of matrix A =\n\t%d\t%d\t%d\n\t%d\t%d\t%d\n\t%d\t%d\t%d",A1,A4,A7,A2,A5,A8,A3,A6,A9);
+      printf("\n");}
 
+//adjoint of matrix
+printf("adjoint of a matrix\n");
+for (i=0;i<3;i++)
+{
+    for(j=0;j<3;j++)
+    {
+       c[i][j]=a[(j+1)%3][(i+1)%3]*a[(j+2)%3][(i+2)%3]-a[(j+1)%3][(i+2)%3]*a[(j+2)%3][(i+1)%3];
+       printf("%d ",c[i][j]);
+    }
+
+    printf("\n");
 }
+//determinant
+float determinant;
+
+determinant= a[0][0] * ((a[1][1]*a[2][2]) - (a[2][1]*a[1][2])) -a[0][1] * (a[1][0]
+   * a[2][2] - a[2][0] * a[1][2]) + a[0][2] * (a[1][0] * a[2][1] - a[2][0] * a[1][1]);
+printf("determinant of matrix a");
+printf("\n");
+printf("%f",determinant);
+printf("\n");
+
+
+//inverse of matrix
+printf("inverse of matix c");
+printf("\n");
+for (i=0;i<3;i++)
+{
+    for(j=0;j<3;j++)
+    {
+       I[i][j]=(a[(j+1)%3][(i+1)%3]*a[(j+2)%3][(i+2)%3]-a[(j+1)%3][(i+2)%3]*a[(j+2)%3][(i+1)%3])/determinant;
+       printf("%f ",I[i][j]);
+    }
+
+    printf("\n");
+}
+
+
+
+  }
+
+
+
+
+
+
+
+
